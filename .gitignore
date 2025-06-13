@@ -1,3 +1,2 @@
-Fundamentals/Level1/*.class
-Fundamentals/Level2/*.class
-ControlFlows/Level1/*.class
+# Ignore all Java compiled class files
+**/*.class
