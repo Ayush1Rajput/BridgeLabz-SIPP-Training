@@ -1,4 +1,5 @@
 
+package Fundamentals.Level1;
 
 import java.util.Scanner;
 
