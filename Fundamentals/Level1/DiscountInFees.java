@@ -1,4 +1,4 @@
-package day1.level1;
+
 
 class DiscountInFees{
 	public static void main (String [] args){

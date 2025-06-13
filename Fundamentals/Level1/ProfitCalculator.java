@@ -1,4 +1,4 @@
-package day1.level1;
+
 
 public class ProfitCalculator {
     public static void main(String[] args) {

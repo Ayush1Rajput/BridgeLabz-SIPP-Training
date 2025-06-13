@@ -1,5 +1,3 @@
-package day1.level1;
-
 import java.util.Scanner;
 public class AreaOfTriangle {
     public static void main(String[] args) {

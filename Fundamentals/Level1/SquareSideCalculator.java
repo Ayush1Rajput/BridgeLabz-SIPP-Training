@@ -1,4 +1,3 @@
-package day1.level1;
 
 import java.util.Scanner;
 class SquareSideCalculator{

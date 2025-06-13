@@ -1,4 +1,4 @@
-package day1.level1;
+
 
 public class PenDistribution {
 
