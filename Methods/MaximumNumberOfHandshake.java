@@ -9,6 +9,9 @@ public class MaximumNumberOfHandshake {
         System.out.print("Enter the number of students : ");
         int numberofstudent = sc.nextInt();
 
+        // close the scanner class
+        sc.close();
+        
         // calling the method for count the maximum number of handshake 
         countNumberHandshake(numberofstudent);
     }
