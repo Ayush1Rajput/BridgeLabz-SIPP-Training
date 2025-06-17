@@ -47,4 +47,6 @@ public class SumComparison {
 
     // Method to find sum using formula
     public static int sumUsingFormula(int n) {
-        re
+        return (n * (n + 1)) / 2;
+    }
+}
