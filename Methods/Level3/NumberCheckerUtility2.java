@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.Arrays;
 
-public class NumberCheckerUtility {
+public class NumberCheckerUtility2 {
 
     // Method to count digits in the number
     public static int countDigits(int number) {
