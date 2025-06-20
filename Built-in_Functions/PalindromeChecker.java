@@ -27,12 +27,12 @@ public class PalindromeChecker {
 
     // Method to check if the string is a palindrome
     static boolean checkPalindrome(String text) {
-        String cleanedText = text.replaceAll("[^a-zA-Z0-9]", "").toLowerCase(); // Remove non-alphanumerics and convert to lowercase
+        text = text.toLowerCase();
         int left = 0;
-        int right = cleanedText.length() - 1;
+        int right = text.length() - 1;
 
         while (left < right) {
-            if (cleanedText.charAt(left) != cleanedText.charAt(right)) {
+            if (text.charAt(left) != text.charAt(right)) {
                 return false;
             }
             left++;
