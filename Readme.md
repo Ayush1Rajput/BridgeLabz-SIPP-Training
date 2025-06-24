@@ -1,3 +1,3 @@
-# Core Java 
- Here we are study the basics of Java Programing 
+# Java OOP's
+ Here we are study about the OOP's fundamental  
 ## 
