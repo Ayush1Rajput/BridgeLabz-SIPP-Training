@@ -92,7 +92,7 @@ class School {
     }
 }
 
-public class SchoolStudentCourseSystem {
+public class SchoolStudentCourse {
     public static void main(String[] args) {
         // Create a school
         School school = new School("DPS");
