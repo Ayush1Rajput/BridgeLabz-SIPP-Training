@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 // Abstract class Employee
 abstract class Employee {
     private int employeeId;
@@ -6,12 +9,12 @@ abstract class Employee {
 
     // Parameterized Constructor
     public Employee(int employeeId, String name, int baseSalary) {
-        this.baseSalary = baseSalary;
-        this.name = name;
         this.employeeId = employeeId;
+        this.name = name;
+        this.baseSalary = baseSalary;
     }
 
-    // Getter methods (Encapsulation)
+    // Getter and Setter methods (Encapsulation)
     public int getEmployeeId() {
         return employeeId;
     }
@@ -24,17 +27,16 @@ abstract class Employee {
         return baseSalary;
     }
 
-    // Setter methods
     public void setEmployeeId(int employeeId) {
         this.employeeId = employeeId;
     }
 
-    public void setBaseSalary(int baseSalary) {
-        this.baseSalary = baseSalary;
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setBaseSalary(int baseSalary) {
+        this.baseSalary = baseSalary;
     }
 
     // Concrete Method to display employee details
@@ -46,7 +48,7 @@ abstract class Employee {
         System.out.println();
     }
 
-    // Abstract method to be implemented by subclasses
+    // Abstract method to calculate salary
     abstract void calculateSalary();
 }
 
@@ -67,7 +69,7 @@ class FullTimeEmployee extends Employee {
 
     @Override
     void calculateSalary() {
-        System.out.println("Full-Time Employee Fixed Salary: " + fixedSalary);
+        System.out.println("Full-Time Employee Salary: " + fixedSalary);
     }
 }
 
@@ -99,17 +101,54 @@ class PartTimeEmployee extends Employee {
     }
 }
 
-// EmployeeManagement Class
-public class EmployeeManagement {
-    public static void main(String[] args) {
-        // Creating FullTimeEmployee 
-        FullTimeEmployee fl = new FullTimeEmployee(121, "Ayush", 1234, 50000);
-        fl.calculateSalary();
-        fl.displayDetails();
+// Department Interface
+interface Department {
+    void assignDepartment(String departmentName);
+    void getDepartmentDetails();
+}
 
-        // Creating PartTimeEmployee 
-        PartTimeEmployee pt = new PartTimeEmployee(1010, "Karan", 30000, 20, 500);
-        pt.calculateSalary();
-        pt.displayDetails();
+// ITDepartment implementing Department interface
+class ITDepartment implements Department {
+    private String departmentName;
+
+    @Override
+    public void assignDepartment(String departmentName) {
+        this.departmentName = departmentName;
+    }
+
+    @Override
+    public void getDepartmentDetails() {
+        System.out.println("Department: " + departmentName);
+    }
+}
+
+// EmployeeManagement Class
+public class EmployeeManagement{
+    public static void main(String[] args) {
+        // Creating FullTimeEmployee
+        FullTimeEmployee fullTimeEmployee = new FullTimeEmployee(101, "Ayush", 30000, 50000);
+        fullTimeEmployee.calculateSalary();
+        fullTimeEmployee.displayDetails();
+
+        // Creating PartTimeEmployee
+        PartTimeEmployee partTimeEmployee = new PartTimeEmployee(102, "Karan", 10000, 20, 200);
+        partTimeEmployee.calculateSalary();
+        partTimeEmployee.displayDetails();
+
+        // Polymorphism: Handling a list of Employees using Employee reference
+        List<Employee> employees = new ArrayList<>();
+        employees.add(fullTimeEmployee);
+        employees.add(partTimeEmployee);
+
+        System.out.println("\n---- Employee Details (Polymorphism) ----");
+        for (Employee employee : employees) {
+            employee.displayDetails();
+            employee.calculateSalary();
+        }
+
+        // Create Department and assign it
+        ITDepartment itDept = new ITDepartment();
+        itDept.assignDepartment("Software Development");
+        itDept.getDepartmentDetails();
     }
 }
