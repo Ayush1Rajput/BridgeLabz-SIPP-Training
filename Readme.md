@@ -12,6 +12,7 @@ This program calculates the price of your coffee based on the type and quantity 
 - The program calculates the total bill, including GST.
 - Option to continue placing more orders.
 
+---
 
 ### 2. **Parking Slot Checker**
 
@@ -32,3 +33,5 @@ This program reverses the order of words in a sentence while keeping the charact
 #### Features:
 - Reverses the order of words in the provided sentence.
 - Outputs the modified sentence with reversed word order.
+
+---
