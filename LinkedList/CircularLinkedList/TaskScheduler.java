@@ -146,7 +146,6 @@ public class TaskScheduler {
 
         scheduler.searchByPriority(1);
 
-        scheduler.updateTaskRating(2, 4);  // Not needed, just example if required
 
         scheduler.removeById(1);
 

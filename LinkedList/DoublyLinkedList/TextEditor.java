@@ -1,4 +1,4 @@
-
+package LinkedList.DoublyLinkedList;
 public class TextEditor {
 
     // Inner class to represent a state of the text
