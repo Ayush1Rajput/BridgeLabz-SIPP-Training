@@ -16,7 +16,9 @@ public class StudentsMarksBubbleSort {
 		}
 		
 		bubbleSort(marks); // call the bubble sort method
-
+		
+		sc.close();
+		
 	}
 	
 	public static void bubbleSort(int[] array) {
