@@ -41,7 +41,7 @@ public class EmployeeIdInsertionSort{
 		
 		int []employeeIds = new int[len];
 		
-		System.out.println("Enter the marks : ");
+		System.out.println("Enter the Employee ID's : ");
 		for(int i=0;i<len;i++) {
 			employeeIds[i]=sc.nextInt();
 		}
