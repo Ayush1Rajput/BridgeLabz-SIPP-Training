@@ -120,4 +120,28 @@ _Topics_: Bubble Sort, Selection Sort, Insertion Sort, and time complexity analy
 
 ---
 
+---
+
+### Day 4 – Searching, StringBuilder, FileReader  
+_Topics_:  
+- Binary Search (finding rotation point in rotated array)  
+- Linear Search (searching word in a sentence)  
+- FileReader for reading file and checking word occurrences  
+- InputStreamReader for efficient input reading  
+- StringBuilder vs StringBuffer performance and usage  
+🔗 [Code](https://github.com/Ayush1Rajput/BridgeLabz-SIPP-Training/tree/DSA/Searching_StringBuilder_FileReader)
+
+---
+
+### Day 5 – Runtime Analysis & Big-O Notation  
+_Topics_:  
+- Fibonacci: Iterative vs Recursive runtime comparison  
+- Linear vs Binary Search performance  
+- Sorting comparisons: Bubble, Selection, Merge  
+- Data structure search timing: Array vs HashSet vs TreeSet  
+- String concatenation benchmarks: String, StringBuilder, StringBuffer  
+- File reading performance analysis  
+🔗 [Code](https://github.com/Ayush1Rajput/BridgeLabz-SIPP-Training/tree/DSA/RuntimeAnalysis_BigONotation)
+
+---
 
