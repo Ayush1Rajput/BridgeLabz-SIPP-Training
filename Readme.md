@@ -60,4 +60,21 @@ Each entry includes concepts covered, skills practiced, and links to the exact c
 
 ---
 
+### ✅ Day 4 – Searching, StringBuilder, FileReader  
+**Topics Covered:**
+- *Binary Search*
+- *Linear Search*
+- *FileReader*
+- *InputStreamReader*
+- *StringBuilder vs StringBuffer*
 
+**Skills Practiced:**
+- Searching techniques (Linear vs Binary Search)
+- File I/O in Java using `FileReader`, `InputStreamReader`
+- String manipulation and performance tuning
+- Clean-up using try-with-resources or manual closure
+
+**Code Link:**  
+🔗 [`Day 4 - Searching, StringBuilder, FileReader`](https://github.com/Ayush1Rajput/BridgeLabz-SIPP-Training/tree/DSA/Searching_StringBuilder_FileReader)
+
+---
