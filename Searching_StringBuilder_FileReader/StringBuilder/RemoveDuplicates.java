@@ -27,6 +27,7 @@ public class RemoveDuplicates {
 		
 		System.out.println("String witout duplicates : "+ stringbuilder.toString());
 
+		sc.close();
 	}
 
 }

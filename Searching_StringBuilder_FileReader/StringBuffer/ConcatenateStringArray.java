@@ -25,6 +25,7 @@ public class ConcatenateStringArray {
 		
 		System.out.println("String array After Concatination : "+ stringbuffer.toString());
 
+		sc.close();
 	}
 
 }
