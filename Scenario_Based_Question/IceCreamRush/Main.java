@@ -1,5 +1,4 @@
-package Scenario_Base.IceCreamRush;
-
+package Scenario_Based_Question.IceCreamRush;
 
 class IceCreamFlavor {
     String name;
