@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 # Ignore all Java compiled class files
 **/*.class
 .classpath
 .project
 bin
+=======
+# Ignore all Java compiled class files
+**/*.class
+>>>>>>> 84cd091179aec2c8835c1b7d663e73de0711524d
