@@ -14,17 +14,17 @@ public class ReverseALinkedList {
 		}
 		
 		reveseArrayList(arr);
+		
 		reveseLinkedList(arr);
 		
-		
+		sc.close();	
 	}
 
 	private static void reveseArrayList(int[] arr) {
-		// TODO Auto-generated method stub
 		
 		ArrayList<Integer> list = new ArrayList<>();
 		System.out.print("List before reverse : ");
-printArr(arr);
+		printArr(arr);
 		
 		for(int i=arr.length-1;i>=0;i--) {
 			list.add(arr[i]);
