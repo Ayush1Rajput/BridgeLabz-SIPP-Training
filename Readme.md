@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # 🧠 BridgeLabz SIPP Training - Daily Progress Tracker 💻🔥
 
 Welcome to my BridgeLabz-SIPP-Training repo!  
