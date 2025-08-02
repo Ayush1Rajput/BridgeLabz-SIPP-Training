@@ -2,7 +2,7 @@ package Scenarios_Questions.PetAdoptionPortal;
 
 import java.util.ArrayList;
 
-public class PetPortal <T extends Pet>{
+public class PetPortal <Pet>{
 	private ArrayList<T> list;
 	
 	public PetPortal() {
