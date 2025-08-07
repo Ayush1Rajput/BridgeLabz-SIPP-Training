@@ -1,0 +1,46 @@
+ABSTRACT CLASS Crop
+	ATTRIBUTE name
+	ATTRIBUTE growthDays
+
+	CONSTRUCTOR(name, growthDays)
+		SET this.name = name
+		SET this.growthDays = growthDays
+
+	ABSTRACT METHOD waterRequirement()
+	ABSTRACT METHOD harvest()
+
+
+CLASS Rice EXTENDS Crop
+
+	CONSTRUCTOR(name, growthDays)
+		CALL super(name, growthDays)
+
+	METHOD waterRequirement()
+		PRINT this.name + " needs high water (5 liters/day)"
+
+	METHOD harvest()
+		PRINT this.name + " is harvested after " + this.growthDays + " days"
+
+
+CLASS Wheat EXTENDS Crop
+
+	CONSTRUCTOR(name, growthDays)
+		CALL super(name, growthDays)
+
+	METHOD waterRequirement()
+		PRINT this.name + " needs moderate water (2 liters/day)"
+
+	METHOD harvest()
+		PRINT this.name + " is harvested after " + this.growthDays + " days"
+
+
+CLASS Main
+	METHOD main()
+		CREATE crop1 = Rice("Basmati", 120)
+		CREATE crop2 = Wheat("Sharbati", 90)
+
+		CALL crop1.waterRequirement()
+		CALL crop1.harvest()
+
+		CALL crop2.waterRequirement()
+		CALL crop2.harvest()
