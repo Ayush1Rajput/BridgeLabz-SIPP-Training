@@ -1,0 +1,44 @@
+CLASS TextEditor
+    ATTRIBUTE text
+    ATTRIBUTE undoStack
+
+    CONSTRUCTOR()
+        SET this.text = ""
+        CREATE this.undoStack as new Stack
+
+    METHOD type(character)
+        CALL undoStack.push(this.text)
+        SET this.text = this.text + character
+
+    METHOD deleteLast()
+        IF LENGTH(this.text) > 0 
+            CALL undoStack.push(this.text)
+            SET this.text = SUBSTRING(this.text, 0, LENGTH(this.text) - 1)
+
+    METHOD undo()
+        IF NOT undoStack.isEmpty() 
+            SET this.text = CALL undoStack.pop()
+        ELSE
+            PRINT "Nothing to undo"
+
+    METHOD display()
+        PRINT "Current Text: " + this.text
+
+
+CLASS Main
+    METHOD main()
+        CREATE editor = TextEditor()
+
+        CALL editor.type("H")
+        CALL editor.type("e")
+        CALL editor.type("l")
+        CALL editor.type("l")
+        CALL editor.type("o")
+
+        CALL editor.display()               
+
+        CALL editor.deleteLast()           
+        CALL editor.display()               
+
+        CALL editor.undo()
+        CALL editor.display()              
