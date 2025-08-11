@@ -1,0 +1,57 @@
+CLASS Job
+    ATTRIBUTE name
+    ATTRIBUTE deadline    
+    ATTRIBUTE processingTime  
+    CONSTRUCTOR(name, deadline, processingTime)
+        SET this.name = name
+        SET this.deadline = deadline
+        SET this.processingTime = processingTime
+
+
+CLASS JobComparator
+    METHOD compare(job1, job2)
+        IF job1.deadline < job2.deadline 
+            RETURN -1
+        ELSE IF job1.deadline > job2.deadline 
+            RETURN 1
+        ELSE
+            IF job1.processingTime < job2.processingTime 
+                RETURN -1
+            ELSE IF job1.processingTime > job2.processingTime 
+                RETURN 1
+            ELSE
+                RETURN 0
+
+
+CLASS JobScheduler
+    ATTRIBUTE jobQueue
+
+    CONSTRUCTOR()
+        CREATE jobQueue as PriorityQueue with JobComparator
+
+    METHOD addJob(job)
+        CALL jobQueue.enqueue(job)
+
+    METHOD processJobs()
+        WHILE NOT jobQueue.isEmpty()
+            SET job = jobQueue.dequeue()
+            PRINT "Processing Job: " + job.name
+            PRINT "Deadline: " + job.deadline
+            PRINT "Processing Time: " + job.processingTime
+
+
+CLASS Main
+    METHOD main()
+        CREATE scheduler = JobScheduler()
+
+        CREATE job1 = Job("Job-A", 5, 10)
+        CREATE job2 = Job("Job-B", 3, 20)
+        CREATE job3 = Job("Job-C", 3, 5)
+        CREATE job4 = Job("Job-D", 7, 15)
+
+        CALL scheduler.addJob(job1)
+        CALL scheduler.addJob(job2)
+        CALL scheduler.addJob(job3)
+        CALL scheduler.addJob(job4)
+
+        CALL scheduler.processJobs()

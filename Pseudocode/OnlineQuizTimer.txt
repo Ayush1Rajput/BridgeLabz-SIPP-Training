@@ -1,0 +1,45 @@
+CLASS TimerSlot
+    ATTRIBUTE timeRemaining   
+
+    CONSTRUCTOR(time)
+        SET this.timeRemaining = time
+
+
+CLASS QuizTimer
+    ATTRIBUTE timeSlots      
+    ATTRIBUTE currentIndex
+    ATTRIBUTE totalQuestions
+    ATTRIBUTE timePerQuestion
+
+    CONSTRUCTOR(totalQuestions, timePerQuestion)
+        SET this.totalQuestions = totalQuestions
+        SET this.timePerQuestion = timePerQuestion
+        CREATE this.timeSlots as array of TimerSlot with size = totalQuestions
+        FOR i = 0 TO totalQuestions - 1
+            SET timeSlots[i] = TimerSlot(timePerQuestion)
+        SET this.currentIndex = 0
+
+    METHOD startQuiz()
+        WHILE currentIndex < totalQuestions
+            PRINT "Question " + (currentIndex + 1)
+            CALL startTimer(timeSlots[currentIndex])
+            INCREMENT currentIndex
+            IF currentIndex == totalQuestions 
+                SET currentIndex = 0    
+
+    METHOD startTimer(slot)
+        WHILE slot.timeRemaining > 0
+            CALL wait(1 second)
+            DECREMENT slot.timeRemaining
+            IF slot.timeRemaining == 5 
+                PRINT "Warning: Only 5 seconds left!"
+        PRINT "Time up for this question!"
+
+
+CLASS Main
+    METHOD main()
+        SET totalQuestions = 3
+        SET timePerQuestion = 30     
+        CREATE quizTimer = QuizTimer(totalQuestions, timePerQuestion)
+
+        CALL quizTimer.startQuiz()
