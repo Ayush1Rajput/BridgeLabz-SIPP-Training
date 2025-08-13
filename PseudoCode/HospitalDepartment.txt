@@ -1,0 +1,35 @@
+CLASS Doctor
+    ATTRIBUTE name
+    ATTRIBUTE specialization
+
+    CONSTRUCTOR(name, specialization)
+        SET this.name = name
+        SET this.specialization = specialization
+
+CLASS Hospital
+    ATTRIBUTE departmentMap   // Map<String, List<Doctor>>
+
+    CONSTRUCTOR()
+        CREATE this.departmentMap as new Map
+
+    METHOD addDoctor(department, doctor)
+        IF department NOT IN departmentMap THEN
+            CREATE new List and ASSIGN to departmentMap[department]
+        ADD doctor TO departmentMap[department]
+
+    METHOD filterDoctorsBySpecialization(specialization)
+        PRINT "Doctors with specialization: " + specialization
+        FOR EACH entry IN departmentMap DO
+            SET doctors = entry.value
+            FOR EACH doctor IN doctors DO
+                IF doctor.specialization == specialization THEN
+                    PRINT doctor.name + " from Department: " + entry.key
+
+CLASS Main
+    METHOD main()
+        CREATE hospital = Hospital()
+        CALL hospital.addDoctor("Cardiology", Doctor("Dr. Karan Gupta", "Heart"))
+        CALL hospital.addDoctor("Neurology", Doctor("Dr. Rajesh", "Brain"))
+        CALL hospital.addDoctor("Cardiology", Doctor("Dr. Chitranjan", "Heart"))
+        CALL hospital.addDoctor("Orthopedics", Doctor("Dr. Sekhar", "Bones"))
+        CALL hospital.filterDoctorsBySpecialization("Heart")
