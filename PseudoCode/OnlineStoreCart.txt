@@ -1,0 +1,37 @@
+CLASS Item
+    ATTRIBUTE name
+    ATTRIBUTE price
+
+    CONSTRUCTOR(name, price)
+        SET this.name = name
+        SET this.price = price
+
+CLASS ShoppingCart
+    ATTRIBUTE cartItems   // List<Item>
+
+    CONSTRUCTOR()
+        CREATE this.cartItems as new List
+
+    METHOD addItem(item)
+        ADD item TO this.cartItems
+
+    GENERIC METHOD calculateTotalPrice(items: List<T>)
+        SET total = 0
+        FOR each item IN items DO
+            total = total + item.price
+        RETURN total
+
+    METHOD displayCart()
+        PRINT "Cart Contents:"
+        FOR each item IN this.cartItems DO
+            PRINT item.name + " - ₹" + item.price
+        SET total = CALL this.calculateTotalPrice(this.cartItems)
+        PRINT "Total Price: ₹" + total
+
+CLASS Main
+    METHOD main()
+        CREATE cart = ShoppingCart()
+        CALL cart.addItem(Item("Phone", 15000))
+        CALL cart.addItem(Item("Earphones", 500))
+        CALL cart.addItem(Item("Neckband", 800))
+        CALL cart.displayCart()
