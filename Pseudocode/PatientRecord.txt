@@ -1,0 +1,27 @@
+CLASS Patient  
+	ATTRIBUTE id  
+	ATTRIBUTE name  
+	ATTRIBUTE age  
+	ATTRIBUTE disease  
+
+	CONSTRUCTOR(id, name, age, disease)  
+		SET this.id = id  
+		SET this.name = name  
+		SET this.age = age  
+		SET this.disease = disease  
+
+
+CLASS Main  
+	ATTRIBUTE patientRecords = HashMap<Integer, Patient>  
+
+	METHOD addPatient(patient)  
+		CALL patientRecords.put(patient.id, patient)  
+
+	METHOD getPatient(id)  
+		RETURN patientRecords.get(id)  
+
+	METHOD updatePatient(id, newPatient)  
+		CALL patientRecords.put(id, newPatient)  
+
+	METHOD deletePatient(id)  
+		CALL patientRecords.remove(id)  
