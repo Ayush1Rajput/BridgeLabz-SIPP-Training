@@ -1,0 +1,34 @@
+INTERFACE Searchable  
+	METHOD search(key)  
+
+
+INTERFACE Printable  
+	METHOD print()  
+
+
+CLASS XRayReport IMPLEMENTS Searchable, Printable  
+	METHOD search(key)  
+		PRINT "Searching in XRay report"  
+
+	METHOD print()  
+		PRINT "Printing XRay Report"  
+
+
+CLASS BloodTestReport IMPLEMENTS Searchable, Printable  
+	METHOD search(key)
+		PRINT "Searching in Blood Test report"  
+
+	METHOD print()  
+		PRINT "Printing Blood Test Report"  
+
+
+CLASS Main  
+	METHOD main()  
+		CREATE xray = XRayReport()  
+		CREATE bloodTest = BloodTestReport()  
+
+		CREATE reports = [xray, bloodTest]  
+
+		FOR EACH report IN reports  
+			CALL report.search("something")  
+			CALL report.print()
