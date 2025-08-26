@@ -1,0 +1,17 @@
+CLASS MazeSolver
+    METHOD solveMaze(grid, x, y)
+        IF at goal
+            RETURN true
+
+        IF position is valid
+            MARK position as visited
+
+            IF solveMaze(right) OR solveMaze(down) OR solveMaze(left) OR solveMaze(up)
+                RETURN true
+
+            UNMARK position (backtrack)
+
+        RETURN false
+
+MAIN
+    CALL solveMaze(startX, startY)

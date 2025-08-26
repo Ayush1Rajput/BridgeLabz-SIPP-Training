@@ -1,0 +1,18 @@
+CLASS Customer
+    ATTRIBUTES: name, address
+
+CLASS Restaurant
+    ATTRIBUTES: name, location
+
+CLASS DeliveryBoy
+    ATTRIBUTES: name, contact
+
+CLASS Order
+    ATTRIBUTES: Customer customer
+                Restaurant restaurant
+                DeliveryBoy deliveryBoy
+                List<String> items
+
+    CONSTRUCTOR(customer, restaurant, deliveryBoy, items)
+    METHOD displayOrder()
+        PRINT customer, restaurant, deliveryBoy, items

@@ -1,0 +1,10 @@
+CLASS Book
+    ATTRIBUTES: title, year, rating
+
+MAIN
+    CREATE List<Book> books
+
+    USE streams:
+        FILTER books WHERE year > 2015 AND rating > 4.5
+        COLLECT results
+        PRINT filtered books

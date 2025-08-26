@@ -1,0 +1,17 @@
+CLASS Patient
+    ATTRIBUTES: id, name, age, disease
+
+MAIN
+    CREATE HashMap<Integer, Patient> patientRecords
+
+    METHOD addPatient(patient)
+        PUT patient.id -> patient
+
+    METHOD getPatient(id)
+        RETURN patientRecords.get(id)
+
+    METHOD updatePatient(id, newPatient)
+        REPLACE patient in map
+
+    METHOD deletePatient(id)
+        REMOVE from map

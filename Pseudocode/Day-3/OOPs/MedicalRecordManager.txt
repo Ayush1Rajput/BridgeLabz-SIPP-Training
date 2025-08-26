@@ -1,0 +1,23 @@
+INTERFACE Searchable
+    METHOD search(keyword)
+
+INTERFACE Printable
+    METHOD print()
+
+CLASS XRayReport IMPLEMENTS Searchable, Printable
+    METHOD search(keyword)
+        PRINT "Searching in XRay report"
+
+    METHOD print()
+        PRINT "Printing XRay Report"
+
+CLASS BloodTestReport IMPLEMENTS Searchable, Printable
+    METHOD search(keyword)
+        PRINT "Searching in Blood Test report"
+
+    METHOD print()
+        PRINT "Printing Blood Test Report"
+
+MAIN
+    CREATE reports (XRayReport, BloodTestReport)
+    CALL search() and print() polymorphically
