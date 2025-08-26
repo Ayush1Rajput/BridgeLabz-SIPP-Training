@@ -1,0 +1,26 @@
+
+// College Course Registration - Moderate
+class Student {
+    int id;
+    String name;
+}
+
+class Course {
+    String code;
+    String title;
+}
+
+Map<Course, List<Student>> registrationMap = new HashMap<>();
+
+void register(Course c, Student s) {
+    registrationMap.computeIfAbsent(c, k -> new ArrayList<>()).add(s);
+}
+
+void display() {
+    for (Course c : registrationMap.keySet()) {
+        print("Course: " + c.title);
+        for (Student s : registrationMap.get(c)) {
+            print(" - " + s.name);
+        }
+    }
+}

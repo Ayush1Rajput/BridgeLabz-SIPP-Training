@@ -1,0 +1,36 @@
+
+// Banking Portal - Moderate
+class Account {
+    int accountNumber;
+    double balance;
+
+    void deposit(double amount) {
+        balance += amount;
+    }
+
+    void withdraw(double amount) {
+        // base rule (can be overridden)
+        if (balance >= amount) {
+            balance -= amount;
+        }
+    }
+}
+
+class SavingAccount extends Account {
+    @Override
+    void withdraw(double amount) {
+        if (balance - amount >= 1000) { // Minimum balance rule
+            balance -= amount;
+        }
+    }
+}
+
+class CurrentAccount extends Account {
+    @Override
+    void withdraw(double amount) {
+        // Overdraft allowed up to some limit
+        if (balance - amount >= -5000) {
+            balance -= amount;
+        }
+    }
+}

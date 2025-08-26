@@ -1,0 +1,33 @@
+
+// Vehicle Rental System - Difficult
+interface Rentable {
+    void rent();
+    void returnVehicle();
+}
+
+abstract class Vehicle implements Rentable {
+    String licensePlate;
+    boolean isAvailable;
+}
+
+class Car extends Vehicle {
+    @Override
+    void rent() { isAvailable = false; }
+    @Override
+    void returnVehicle() { isAvailable = true; }
+}
+
+class Bike extends Vehicle {
+    @Override
+    void rent() { isAvailable = false; }
+    @Override
+    void returnVehicle() { isAvailable = true; }
+}
+
+class VehicleFactory {
+    static Vehicle createVehicle(String type) {
+        if (type.equals("Car")) return new Car();
+        if (type.equals("Bike")) return new Bike();
+        return null;
+    }
+}

@@ -1,0 +1,22 @@
+
+// Crime Prediction Heatmap - Difficult
+class Zone {
+    int id;
+    List<Zone> neighbors;
+    int crimeLevel;
+}
+
+class CityGraph {
+    Map<Integer, Zone> zones;
+
+    void dfs(Zone zone, Set<Zone> visited) {
+        if (visited.contains(zone)) return;
+        visited.add(zone);
+        if (zone.crimeLevel > 5) {
+            print("High Risk Zone: " + zone.id);
+        }
+        for (Zone n : zone.neighbors) {
+            dfs(n, visited);
+        }
+    }
+}

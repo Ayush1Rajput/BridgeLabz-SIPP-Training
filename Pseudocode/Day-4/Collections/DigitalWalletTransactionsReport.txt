@@ -1,0 +1,17 @@
+
+// Digital Wallet Transactions Report - Difficult
+class Transaction {
+    String merchant;
+    String month;
+    double amount;
+}
+
+List<Transaction> transactions;
+
+void generateReport() {
+    // Using streams in actual Java:
+    // transactions.stream()
+    //    .collect(groupingBy(t -> t.merchant, groupingBy(t -> t.month, summingDouble(t -> t.amount))));
+    //
+    // For pseudo-code, just indicate grouping by merchant + month, then sum amounts.
+}
