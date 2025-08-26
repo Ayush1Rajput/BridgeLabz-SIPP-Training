@@ -1,0 +1,38 @@
+
+// Restaurant POS Billing System
+abstract class TaxCalculator {
+    abstract double calculate(double price);
+}
+
+class FoodTax extends TaxCalculator {
+    double calculate(double price) { return price * 0.05; }
+}
+
+class BeverageTax extends TaxCalculator {
+    double calculate(double price) { return price * 0.12; }
+}
+
+class ImportedTax extends TaxCalculator {
+    double calculate(double price) { return price * 0.05 + 50; } // customs duty
+}
+
+interface DiscountPolicy {
+    double apply(double amount);
+}
+
+class NoDiscount implements DiscountPolicy {
+    double apply(double amount) { return amount; }
+}
+
+class FlatDiscount implements DiscountPolicy {
+    double apply(double amount) { return amount - 100; }
+}
+
+class PercentageDiscount implements DiscountPolicy {
+    double apply(double amount) { return amount * 0.90; }
+}
+
+// Example billing flow:
+// 1. Add items with associated TaxCalculator.
+// 2. Compute subtotal + tax.
+// 3. Apply DiscountPolicy at checkout.

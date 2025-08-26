@@ -1,0 +1,27 @@
+
+// Distributed Load Balancer using Queue
+class LoadBalancer {
+    Queue<String> servers = new LinkedList<>();
+
+    void addServer(String server) {
+        servers.add(server);
+    }
+
+    void removeServer(String server) {
+        servers.remove(server);
+    }
+
+    String assignRequest(String request) {
+        String server = servers.poll(); // get front
+        print(request + " -> " + server);
+        servers.add(server); // move to back
+        return server;
+    }
+}
+
+// Example:
+// servers = [S1, S2, S3]
+// R1 -> S1, queue=[S2,S3,S1]
+// R2 -> S2, queue=[S3,S1,S2]
+// Add S4 => [S3,S1,S2,S4]
+// R3 -> S3 ...

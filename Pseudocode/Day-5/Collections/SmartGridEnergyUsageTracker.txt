@@ -1,0 +1,25 @@
+
+// Smart Grid Energy Usage Tracker
+class Reading {
+    String meterId;
+    int consumption;
+}
+
+Map<String, Map<String, List<Reading>>> energyData = new HashMap<>();
+
+void addReading(String zone, String day, Reading r) {
+    energyData
+        .computeIfAbsent(zone, z -> new HashMap<>())
+        .computeIfAbsent(day, d -> new ArrayList<>())
+        .add(r);
+}
+
+void computePeakUsage() {
+    for (String zone : energyData.keySet()) {
+        for (String day : energyData.get(zone).keySet()) {
+            int peak = energyData.get(zone).get(day)
+                .stream().mapToInt(r -> r.consumption).max().orElse(0);
+            print("Zone: " + zone + " Day: " + day + " Peak: " + peak);
+        }
+    }
+}

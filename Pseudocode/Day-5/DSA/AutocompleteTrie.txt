@@ -1,0 +1,37 @@
+
+// Autocomplete Search Suggestions using Trie
+class TrieNode {
+    Map<Character, TrieNode> children = new HashMap<>();
+    boolean isEndOfWord;
+    int popularity;
+}
+
+class Trie {
+    TrieNode root = new TrieNode();
+
+    void insert(String word) {
+        TrieNode node = root;
+        for (char c : word.toCharArray()) {
+            node = node.children.computeIfAbsent(c, k -> new TrieNode());
+        }
+        node.isEndOfWord = true;
+    }
+
+    List<String> searchPrefix(String prefix) {
+        TrieNode node = root;
+        for (char c : prefix.toCharArray()) {
+            if (!node.children.containsKey(c)) return List.of();
+            node = node.children.get(c);
+        }
+        // DFS from node to get words with prefix
+        return collectWords(node, prefix);
+    }
+
+    List<String> collectWords(TrieNode node, String prefix) {
+        // Recursive collection with popularity sorting
+    }
+}
+
+// Example:
+// Insert "pizza hut", "pizza point", "pita bread", "pizzeria"
+// search("pi") => "pizza hut", "pizza point", "pita bread"

@@ -1,0 +1,51 @@
+
+// Healthcare Diagnosis Engine
+interface DiagnosisStrategy {
+    List<String> diagnose(List<String> symptoms);
+}
+
+class RuleBasedDiagnosis implements DiagnosisStrategy {
+    @Override
+    List<String> diagnose(List<String> symptoms) {
+        if (symptoms.contains("fever") && symptoms.contains("cough")) {
+            return List.of("Flu", "COVID-19");
+        }
+        return List.of("Unknown");
+    }
+}
+
+class AIBasedDiagnosis implements DiagnosisStrategy {
+    @Override
+    List<String> diagnose(List<String> symptoms) {
+        // Pretend to call AI model
+        if (symptoms.contains("headache") && symptoms.contains("dizziness")) {
+            return List.of("Migraine", "Vertigo");
+        }
+        return List.of("Unknown");
+    }
+}
+
+class ProbabilityBasedDiagnosis implements DiagnosisStrategy {
+    @Override
+    List<String> diagnose(List<String> symptoms) {
+        // Use probability scores
+        return List.of("Possible Disease A", "Possible Disease B");
+    }
+}
+
+// Context to switch strategy dynamically
+class DiagnosisContext {
+    DiagnosisStrategy strategy;
+
+    void setStrategy(DiagnosisStrategy s) { strategy = s; }
+
+    List<String> executeDiagnosis(List<String> symptoms) {
+        return strategy.diagnose(symptoms);
+    }
+}
+
+// Demonstration
+// context.setStrategy(new RuleBasedDiagnosis());
+// context.executeDiagnosis(["fever","cough","fatigue"]);
+// context.setStrategy(new AIBasedDiagnosis());
+// context.executeDiagnosis(["headache","dizziness","nausea"]);

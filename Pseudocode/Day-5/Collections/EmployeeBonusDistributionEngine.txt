@@ -1,0 +1,27 @@
+
+// Employee Bonus Distribution Engine
+class Employee {
+    String name;
+    String department;
+    int rating;
+    double baseSalary;
+}
+
+List<Employee> employees;
+
+void distributeBonuses(List<Employee> employees) {
+    Map<String, List<Employee>> deptGroups = employees.stream()
+        .collect(Collectors.groupingBy(e -> e.department));
+
+    for (String dept : deptGroups.keySet()) {
+        List<Employee> group = deptGroups.get(dept);
+        double pool = group.stream().mapToDouble(e -> e.baseSalary).sum() * 0.10;
+        int totalRating = group.stream().mapToInt(e -> e.rating).sum();
+
+        for (Employee e : group) {
+            double share = (double)e.rating / totalRating;
+            double bonus = pool * share;
+            print(e.name + " in " + dept + " gets bonus " + bonus);
+        }
+    }
+}
