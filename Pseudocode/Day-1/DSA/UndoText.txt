@@ -1,0 +1,12 @@
+ATTRIBUTE currentText
+ATTRIBUTE stack
+
+METHOD typetext(text)
+	PUSH currentText TO stack
+	SET currentText = currentText + text
+	
+METHOD undo()
+	IF stack IS NOT EMPTY
+		SET currentText = POP FROM stack
+	ELSE 
+		PRINT "Nothing"

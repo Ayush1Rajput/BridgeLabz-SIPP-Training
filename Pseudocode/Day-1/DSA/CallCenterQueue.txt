@@ -1,0 +1,61 @@
+CLASS Customer
+    ATTRIBUTE name
+    ATTRIBUTE priority  
+
+    CONSTRUCTOR(name, priority)
+        SET this.name = name
+        SET this.priority = priority
+
+
+CLASS CallCenter
+    ATTRIBUTE emergencyQueue
+    ATTRIBUTE normalQueue
+
+    CONSTRUCTOR()
+        CREATE this.emergencyQueue as new Queue
+        CREATE this.normalQueue as new Queue
+
+    METHOD addCustomer(customer)
+        IF customer.priority == "emergency" 
+            CALL emergencyQueue.enqueue(customer)
+        ELSE
+            CALL normalQueue.enqueue(customer)
+
+    METHOD serveCustomer()
+        IF NOT emergencyQueue.isEmpty() 
+            SET customer = CALL emergencyQueue.dequeue()
+            PRINT "Serving Emergency Customer: " + customer.name
+        ELSE IF NOT normalQueue.isEmpty() 
+            SET customer = CALL normalQueue.dequeue()
+            PRINT "Serving Normal Customer: " + customer.name
+        ELSE
+            PRINT "No customers to serve."
+
+    METHOD displayQueues()
+        PRINT "Emergency Queue:"
+        FOR EACH customer IN emergencyQueue
+            PRINT "- " + customer.name
+
+        PRINT "Normal Queue:"
+        FOR EACH customer IN normalQueue
+            PRINT "- " + customer.name
+
+
+CLASS Main
+    METHOD main()
+        CREATE center = CallCenter()
+
+        CREATE c1 = Customer("Ayush", "normal")
+        CREATE c2 = Customer("Bablu", "emergency")
+        CREATE c3 = Customer("Chetan", "normal")
+        CREATE c4 = Customer("Divanshu", "emergency")
+
+        CALL center.addCustomer(c1)
+        CALL center.addCustomer(c2)
+        CALL center.addCustomer(c3)
+        CALL center.addCustomer(c4)
+
+        CALL center.displayQueues()
+
+        CALL center.serveCustomer()    
+        CALL center.serveCustomer()    
