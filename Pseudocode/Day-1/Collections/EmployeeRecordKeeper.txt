@@ -1,0 +1,31 @@
+CLASS Employee
+    ATTRIBUTE name
+    ATTRIBUTE department
+
+    CONSTRUCTOR(name, department)
+        SET this.name = name
+        SET this.department = department
+
+CLASS EmployeeManager
+    ATTRIBUTE employeeList   // ArrayList<Employee>
+
+    CONSTRUCTOR()
+        CREATE this.employeeList as new ArrayList
+
+    METHOD addEmployee(employee)
+        ADD employee TO this.employeeList
+
+    METHOD filterByDepartment(targetDept)
+        PRINT "Employees in Department: " + targetDept
+        FOR EACH employee IN this.employeeList DO
+            IF employee.department == targetDept THEN
+                PRINT employee.name
+
+CLASS Main
+    METHOD main()
+        CREATE manager = EmployeeManager()
+        CALL manager.addEmployee(Employee("Ayush", "IT"))
+        CALL manager.addEmployee(Employee("Bhaskar", "IT"))
+        CALL manager.addEmployee(Employee("Karan", "HR"))
+        CALL manager.addEmployee(Employee("Ravi", "Finance"))
+        CALL manager.filterByDepartment("HR")
