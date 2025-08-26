@@ -1,0 +1,20 @@
+CLASS Item
+    ATTRIBUTES: name, price
+
+CLASS ShoppingCart
+    ATTRIBUTE: List<Item> items
+
+    METHOD addItem(item)
+        ADD item to items
+
+    GENERIC METHOD calculateTotal(List<T extends Item>)
+        total = 0
+        FOR each item in list
+            total += item.price
+        RETURN total
+
+MAIN
+    CREATE ShoppingCart cart
+    ADD items
+    CALL calculateTotal(cart.items)
+    PRINT total price

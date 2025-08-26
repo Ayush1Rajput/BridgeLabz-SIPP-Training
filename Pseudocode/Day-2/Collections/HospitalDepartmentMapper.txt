@@ -1,0 +1,11 @@
+CLASS Doctor
+    ATTRIBUTES: name, specialization
+
+MAIN
+    CREATE Map<String, List<Doctor>> departmentMap
+
+    ADD "Cardiology" → List of doctors
+    ADD "Neurology" → List of doctors
+
+    FILTER doctors in departmentMap WHERE specialization == "Heart Specialist"
+    PRINT results
