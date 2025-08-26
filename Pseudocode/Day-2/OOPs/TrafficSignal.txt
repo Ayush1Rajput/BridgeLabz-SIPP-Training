@@ -1,0 +1,39 @@
+ENUM TrafficLight
+	VALUE RED
+	VALUE YELLOW
+	VALUE GREEN
+
+
+CLASS TrafficSignal
+	ATTRIBUTE currentLight
+	ATTRIBUTE timer 
+
+	CONSTRUCTOR()
+		SET this.currentLight = TrafficLight.RED
+		SET this.timer = 0
+
+	METHOD switchLight()
+		IF this.currentLight == TrafficLight.RED THEN
+			SET this.currentLight = TrafficLight.GREEN
+			SET this.timer = 60  
+		ELSE IF this.currentLight == TrafficLight.GREEN THEN
+			SET this.currentLight = TrafficLight.YELLOW
+			SET this.timer = 5  
+		ELSE IF this.currentLight == TrafficLight.YELLOW THEN
+			SET this.currentLight = TrafficLight.RED
+			SET this.timer = 55  
+
+	METHOD displayLight()
+		PRINT "Current Light: " + this.currentLight
+		PRINT "Time Remaining: " + this.timer + " seconds"
+
+	METHOD runSimulation(cycles)
+		FOR i FROM 1 TO cycles DO
+			CALL this.displayLight()
+			CALL this.switchLight()
+
+
+CLASS Main
+	METHOD main()
+		CREATE signal = TrafficSignal()
+		CALL signal.runSimulation(5)
