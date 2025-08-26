@@ -1,0 +1,13 @@
+CLASS Job
+    ATTRIBUTES: name, deadline, processingTime
+
+CLASS JobScheduler
+    ATTRIBUTE: PriorityQueue<Job> jobQueue   // priority by earliest deadline, then shortest processing time
+
+    METHOD addJob(job)
+        INSERT job into jobQueue
+
+    METHOD scheduleJobs()
+        WHILE jobQueue not empty
+            job = REMOVE highest priority
+            PRINT "Executing job: " + job.name

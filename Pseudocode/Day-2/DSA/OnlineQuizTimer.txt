@@ -1,0 +1,18 @@
+CLASS QuizTimer
+    ATTRIBUTE: int[] timeSlots   // circular array
+    ATTRIBUTE: int currentIndex
+    ATTRIBUTE: int size
+
+    CONSTRUCTOR(size)
+        CREATE array of given size
+        currentIndex = 0
+
+    METHOD addTimeSlot(time)
+        timeSlots[currentIndex] = time
+        currentIndex = (currentIndex + 1) % size
+
+    METHOD startTimer()
+        FOR each slot in timeSlots
+            PRINT "Question timer started"
+            IF time <= warningThreshold
+                PRINT "Warning: Time is running out!"
