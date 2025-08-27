@@ -1,0 +1,27 @@
+CLASS TaskOrganizer
+    ATTRIBUTE tasks      
+    ATTRIBUTE taskCounter 
+
+    CONSTRUCTOR()
+        SET this.tasks = {}   
+        SET this.taskCounter = 0  
+
+    METHOD addTask(desc)
+        taskCounter = taskCounter + 1  
+        tasks.put(taskCounter, desc)  
+
+    METHOD removeTask(taskId)
+        IF taskId IN tasks THEN
+            REMOVE taskId FROM tasks 
+            PRINT "Task " + taskId + " removed."
+        ELSE
+            PRINT "Task ID " + taskId + " not found."
+
+    METHOD viewTasks()
+        PRINT "Daily Tasks:"
+        FOR EACH (id, desc) IN tasks
+            PRINT id + " → " + desc  
+
+CLASS Main
+    METHOD main()
+        CREATE organizer = TaskOrganizer()  

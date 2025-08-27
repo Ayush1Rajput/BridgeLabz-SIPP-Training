@@ -1,0 +1,33 @@
+CLASS WordFrequencyAnalyzer
+    ATTRIBUTE wordCounts
+
+    CONSTRUCTOR()
+        SET this.wordCounts = {}
+
+    METHOD analyzeText(paragraph)
+        SET words = paragraph
+                        .toLowerCase()
+                        .replaceAll("[^a-zA-Z\\s]", "")
+                        .split("\\s+")
+
+        FOR EACH word IN words
+            IF word IS NOT EMPTY THEN
+                IF wordCounts CONTAINS KEY word THEN
+                    wordCounts.put(word, wordCounts.get(word) + 1)
+                ELSE
+                    wordCounts.put(word, 1)
+
+    METHOD displayWordCounts()
+        PRINT "Word Frequency Analysis:"
+
+        SET sortedWordCounts = wordCounts.entrySet()
+                                        .stream()
+                                        .sorted((entry1, entry2) -> entry2.value - entry1.value)
+
+        FOR EACH (word, count) IN sortedWordCounts
+            PRINT word + " (" + count + ")"
+
+
+CLASS Main
+    METHOD main()
+        CREATE analyzer = WordFrequencyAnalyzer()
