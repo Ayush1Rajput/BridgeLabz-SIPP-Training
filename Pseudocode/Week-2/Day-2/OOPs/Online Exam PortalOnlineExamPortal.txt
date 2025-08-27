@@ -1,0 +1,51 @@
+CLASS User
+    ATTRIBUTE username
+    ATTRIBUTE password
+
+    METHOD login()
+        PRINT "Base login"
+END CLASS
+
+
+CLASS Student EXTENDS User
+    ATTRIBUTE enrolledCourse
+
+    METHOD login()
+        PRINT "Enter Student Username:"
+        INPUT username
+        PRINT "Enter Student Password:"
+        INPUT password
+
+        IF username == "john123" AND password == "pass123" THEN
+            IF enrolledCourse == TRUE THEN
+                PRINT "Student login successful!"
+                PRINT "You can view exams, results, and progress."
+            ELSE
+                PRINT "Access Denied! Not enrolled in any course."
+            END IF
+        ELSE
+            PRINT "Invalid Student Credentials!"
+        END IF
+END CLASS
+
+
+CLASS Admin EXTENDS User
+    ATTRIBUTE adminRole
+
+    METHOD login()
+        PRINT "Enter Admin Username:"
+        INPUT username
+        PRINT "Enter Admin Password:"
+        INPUT password
+
+        IF username == "admin001" AND password == "admin@123" THEN
+            IF adminRole == TRUE THEN
+                PRINT "Admin login successful!"
+                PRINT "You can manage exams and review performance."
+            ELSE
+                PRINT "Access Denied! No admin privileges."
+            END IF
+        ELSE
+            PRINT "Invalid Admin Credentials!"
+        END IF
+END CLASS
