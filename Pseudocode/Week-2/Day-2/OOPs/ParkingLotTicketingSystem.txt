@@ -1,0 +1,32 @@
+CLASS Vehicle
+    ATTRIBUTE vehicleNumber
+    ATTRIBUTE entryTime
+
+    METHOD calculateFee(exitTime)
+        PRINT "Base calculation"
+END CLASS
+
+
+CLASS Car EXTENDS Vehicle
+    METHOD calculateFee(exitTime)
+        hours = CEIL(exitTime - entryTime in hours)
+        fee = 50 + (hours - 1) * 30
+        RETURN fee
+END CLASS
+
+
+CLASS Bike EXTENDS Vehicle
+    METHOD calculateFee(exitTime)
+        hours = CEIL(exitTime - entryTime in hours)
+        fee = 20 + (hours - 1) * 10
+        RETURN fee
+END CLASS
+
+
+CLASS Truck EXTENDS Vehicle
+    METHOD calculateFee(exitTime)
+        hours = CEIL(exitTime - entryTime in hours)
+        fee = 100 + (hours - 1) * 50
+        RETURN fee
+END CLASS
+
