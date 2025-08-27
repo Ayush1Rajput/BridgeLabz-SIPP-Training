@@ -1,0 +1,21 @@
+CLASS AttendanceSystem
+    ATTRIBUTE students
+    ATTRIBUTE days
+
+    records = char[students][days]
+
+    METHOD markAttendance(studentId, day, status)
+        records[studentId][day] = status
+
+    METHOD updateAttendance(studentId, day, newStatus)
+        records[studentId][day] = newStatus
+
+    METHOD report(studentId)
+        presentCount = 0
+        for each day in records[studentId]:
+            if day == 'P':
+                presentCount += 1
+        return presentCount
+    
+CLASS Main
+    system = new AttendanceSystem(30, 31)

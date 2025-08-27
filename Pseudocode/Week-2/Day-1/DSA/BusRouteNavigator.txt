@@ -1,0 +1,71 @@
+CLASS BusStopNode
+    ATTRIBUTE stopName
+    ATTRIBUTE next
+
+    CONSTRUCTOR(stopName)
+        SET this.stopName = stopName
+        SET this.next = null
+
+
+CLASS BusRoute
+    ATTRIBUTE head
+
+    CONSTRUCTOR()
+        SET this.head = null
+
+    METHOD addStop(stopName)
+        CREATE newStop = BusStopNode(stopName)
+        IF this.head == null THEN
+            SET this.head = newStop
+        ELSE
+            SET current = this.head
+            WHILE current.next IS NOT null
+                SET current = current.next
+            SET current.next = newStop
+        PRINT stopName + " added to the end of the route."
+
+    METHOD insertStopAfter(targetStop, newStopName)
+        SET current = this.head
+        WHILE current IS NOT null
+            IF current.stopName == targetStop THEN
+                CREATE newStop = BusStopNode(newStopName)
+                SET newStop.next = current.next
+                SET current.next = newStop
+                PRINT newStopName + " inserted after " + targetStop
+                RETURN
+            SET current = current.next
+        PRINT "Stop " + targetStop + " not found. Cannot insert."
+
+    METHOD removeStop(stopName)
+        IF this.head == null THEN
+            PRINT "Route is empty."
+            RETURN
+        IF this.head.stopName == stopName THEN
+            SET this.head = this.head.next
+            PRINT stopName + " removed from the route."
+            RETURN
+        SET current = this.head
+        WHILE current.next IS NOT null
+            IF current.next.stopName == stopName THEN
+                SET current.next = current.next.next
+                PRINT stopName + " removed from the route."
+                RETURN
+            SET current = current.next
+        PRINT stopName + " not found in the route."
+
+    METHOD searchStop(stopName)
+        SET current = this.head
+        WHILE current IS NOT null
+            IF current.stopName == stopName THEN
+                PRINT stopName + " is part of the route."
+                RETURN
+            SET current = current.next
+        PRINT stopName + " is NOT in the route."
+
+    METHOD displayRoute()
+        SET current = this.head
+        PRINT "Current Bus Route:"
+        WHILE current IS NOT null
+            PRINT current.stopName + " -> "
+            SET current = current.next
+        PRINT "End"
