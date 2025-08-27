@@ -1,0 +1,90 @@
+CLASS Ticket
+    ATTRIBUTE movieName
+    ATTRIBUTE seatNumber
+    ATTRIBUTE price
+    ATTRIBUTE isBooked
+
+    CONSTRUCTOR(movieName, seatNumber, price)
+        SET this.movieName = movieName
+        SET this.seatNumber = seatNumber
+        SET this.price = price
+        SET this.isBooked = true
+
+    METHOD cancel()
+        SET this.isBooked = false
+        PRINT "Ticket for seat " + this.seatNumber + " canceled."
+
+
+CLASS Theatre
+    ATTRIBUTE movies
+    ATTRIBUTE seats
+    ATTRIBUTE tickets
+
+    CONSTRUCTOR()
+        SET this.movies = {}
+        SET this.seats = {}
+        SET this.tickets = []
+
+    METHOD addMovie(movieName, time, seatList)
+        SET this.movies[movieName] = time
+        SET this.seats[movieName] = seatList
+
+    METHOD showSeats(movieName)
+        PRINT "Seats for " + movieName + ": " + this.seats[movieName]
+
+    METHOD bookTicket(movieName, seatNumber, price)
+        IF seatNumber IN this.seats[movieName] THEN
+            REMOVE seatNumber FROM this.seats[movieName]
+            CREATE ticket = Ticket(movieName, seatNumber, price)
+            APPEND ticket TO this.tickets
+            RETURN ticket
+        ELSE
+            PRINT "Seat not available."
+            RETURN null
+
+    METHOD cancelTicket(ticket)
+        CALL ticket.cancel()
+        APPEND ticket.seatNumber TO this.seats[ticket.movieName]
+
+
+CLASS Customer
+    ATTRIBUTE name
+    ATTRIBUTE tickets
+
+    CONSTRUCTOR(name)
+        SET this.name = name
+        SET this.tickets = []
+
+    METHOD viewMovies(theatre)
+        FOR EACH movie IN theatre.movies
+            PRINT movie + " at " + theatre.movies[movie]
+
+    METHOD book(theatre, movieName, seatNumber, price)
+        CALL theatre.showSeats(movieName)
+        CREATE ticket = theatre.bookTicket(movieName, seatNumber, price)
+        IF ticket IS NOT null THEN
+            APPEND ticket TO this.tickets
+            PRINT this.name + " booked seat " + seatNumber
+
+    METHOD cancel(theatre, seatNumber)
+        FOR EACH ticket IN this.tickets
+            IF ticket.seatNumber == seatNumber AND ticket.isBooked == true THEN
+                CALL theatre.cancelTicket(ticket)
+                PRINT this.name + " canceled seat " + seatNumber
+                RETURN
+        PRINT "No ticket found to cancel."
+
+
+CLASS Main
+    METHOD main()
+        CREATE theatre = Theatre()
+        CALL theatre.addMovie("Avengers", "6 PM", ["A10", "A11", "A12"])
+
+        CREATE customer = Customer("Ravi")
+        CALL customer.viewMovies(theatre)
+
+        PRINT "--- Booking ---"
+        CALL customer.book(theatre, "Avengers", "A12", 300)
+
+        PRINT "--- Canceling ---"
+        CALL customer.cancel(theatre, "A12")

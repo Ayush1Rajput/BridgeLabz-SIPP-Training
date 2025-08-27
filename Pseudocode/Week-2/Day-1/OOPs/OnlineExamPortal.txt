@@ -1,0 +1,64 @@
+CLASS User
+    ATTRIBUTE username
+    ATTRIBUTE password
+
+    CONSTRUCTOR(username, password)
+        SET this.username = username
+        SET this.password = password
+
+    METHOD login()
+        PRINT "Generic user login. Override in subclasses."
+
+
+CLASS Student EXTENDS User
+    ATTRIBUTE enrolledCourses
+
+    CONSTRUCTOR(username, password, enrolledCourses)
+        CALL super(username, password)
+        SET this.enrolledCourses = enrolledCourses
+
+    METHOD login()
+        IF this.username IS NOT EMPTY AND this.password IS NOT EMPTY THEN
+            IF this.enrolledCourses IS NOT EMPTY THEN
+                PRINT "Student login successful."
+                PRINT "Welcome, " + this.username
+                PRINT "Available Exams: [Exam1, Exam2]"  // placeholder
+            ELSE
+                PRINT "Access Denied: Student not enrolled in any course."
+        ELSE
+            PRINT "Invalid credentials."
+
+
+CLASS Admin EXTENDS User
+    ATTRIBUTE isAdmin
+
+    CONSTRUCTOR(username, password, isAdmin)
+        CALL super(username, password)
+        SET this.isAdmin = isAdmin
+
+    METHOD login()
+        IF this.username IS NOT EMPTY AND this.password IS NOT EMPTY THEN
+            IF this.isAdmin == true THEN
+                PRINT "Admin login successful."
+                PRINT "Welcome Admin, " + this.username
+                PRINT "Admin Tools: [Create Exam, Manage Questions, Review Performance]"
+            ELSE
+                PRINT "Access Denied: Not an admin user."
+        ELSE
+            PRINT "Invalid credentials."
+
+
+CLASS Main
+    METHOD main()
+        CREATE student1 = Student("Ayush123", "pass123", ["Math101", "CS102"])
+        CREATE admin1 = Admin("admin001", "adminpass", true)
+        CREATE student2 = Student("karan999", "wrongpass", [])   // not enrolled
+
+        PRINT "--- STUDENT LOGIN ---"
+        CALL student1.login()
+
+        PRINT "--- ADMIN LOGIN ---"
+        CALL admin1.login()
+
+        PRINT "--- UNENROLLED STUDENT LOGIN ---"
+        CALL student2.login()
