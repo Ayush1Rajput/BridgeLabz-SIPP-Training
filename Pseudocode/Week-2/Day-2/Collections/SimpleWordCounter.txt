@@ -1,0 +1,50 @@
+CLASS WordCounter
+
+    METHOD countWords(articleText)
+        // Step 1: Normalize text
+        CONVERT articleText to lowercase
+        REMOVE punctuation marks
+
+        // Step 2: Split into words
+        words[] = SPLIT articleText by spaces
+
+        // Step 3: Create Map for frequency count
+        CREATE Map<String, Integer> wordMap
+
+        FOR each word IN words
+            IF wordMap contains word
+                INCREMENT wordMap[word] by 1
+            ELSE
+                INSERT word with value 1
+            ENDIF
+        ENDFOR
+
+        PRINT "Word Frequency: " + wordMap
+
+    METHOD countSpecificWord(wordMap, targetWord)
+        IF wordMap contains targetWord
+            PRINT targetWord + " appears " + wordMap[targetWord] + " times"
+        ELSE
+            PRINT targetWord + " not found in article"
+
+    METHOD mostFrequentWord(wordMap)
+        SET maxWord = ""
+        SET maxCount = 0
+        FOR each entry IN wordMap
+            IF entry.value > maxCount
+                maxWord = entry.key
+                maxCount = entry.value
+            ENDIF
+        ENDFOR
+        PRINT "Most frequent word = " + maxWord + " (" + maxCount + " times)"
+
+    METHOD rareWords(wordMap)
+        PRINT "Rarely used words:"
+        FOR each entry IN wordMap
+            IF entry.value == 1
+                PRINT entry.key
+            ENDIF
+        ENDFOR
+
+CLASS MAIN
+    
