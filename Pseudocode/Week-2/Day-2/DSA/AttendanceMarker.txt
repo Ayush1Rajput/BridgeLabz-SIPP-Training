@@ -1,0 +1,42 @@
+CLASS AttendanceMarker
+    DATA attendance[30][30]   
+
+    METHOD markAttendance(student, day, status)
+        attendance[student-1][day-1] = status
+        PRINT "Attendance marked for Student " + student + " on Day " + day
+
+    METHOD dailySummary(day)
+        SET count = 0
+        FOR i = 0 TO 29
+            IF attendance[i][day-1] == 1
+                count = count + 1
+            ENDIF
+        ENDFOR
+        PRINT "Total students present on Day " + day + " = " + count
+
+    METHOD monthlySummary(student)
+        SET presentCount = 0
+        FOR j = 0 TO 29
+            IF attendance[student-1][j] == 1
+                presentCount = presentCount + 1
+            ENDIF
+        ENDFOR
+        PRINT "Student " + student + " was present for " + presentCount + " days"
+
+    METHOD defaulterList()
+        PRINT "Defaulter Students (<75% attendance):"
+        FOR i = 0 TO 29
+            SET presentCount = 0
+            FOR j = 0 TO 29
+                IF attendance[i][j] == 1
+                    presentCount = presentCount + 1
+                ENDIF
+            ENDFOR
+            IF presentCount < 22        // 22 = 75% of 30 days
+                PRINT "Student " + (i+1) + " → " + presentCount + " days"
+            ENDIF
+        ENDFOR
+
+MAIN
+    CREATE obj = new AttendanceMarker()
+

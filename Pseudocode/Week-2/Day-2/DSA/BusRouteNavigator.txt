@@ -1,0 +1,69 @@
+CLASS Node
+    DATA stopName
+    DATA next
+
+CLASS BusRoute
+    DATA head
+
+    METHOD addStopAfter(existingStop, newStop)
+        CREATE newNode WITH stopName = newStop
+        SET current = head
+        WHILE current != NULL
+            IF current.stopName == existingStop
+                newNode.next = current.next
+                current.next = newNode
+                PRINT newStop + " added after " + existingStop
+                RETURN
+            ENDIF
+            current = current.next
+        ENDWHILE
+        PRINT "Stop " + existingStop + " not found!"
+
+    METHOD removeStop(stopName)
+        IF head == NULL
+            PRINT "Route is empty"
+            RETURN
+        ENDIF
+
+        // Case 1: First node is to be deleted
+        IF head.stopName == stopName
+            head = head.next
+            PRINT stopName + " removed from the route"
+            RETURN
+        ENDIF
+
+        // Case 2: Search for the node
+        SET current = head
+        WHILE current.next != NULL
+            IF current.next.stopName == stopName
+                current.next = current.next.next
+                PRINT stopName + " removed from the route"
+                RETURN
+            ENDIF
+            current = current.next
+        ENDWHILE
+        PRINT "Stop " + stopName + " not found!"
+
+    METHOD searchStop(stopName)
+        SET current = head
+        WHILE current != NULL
+            IF current.stopName == stopName
+                PRINT stopName + " is present in the route"
+                RETURN TRUE
+            ENDIF
+            current = current.next
+        ENDWHILE
+        PRINT stopName + " not found in the route"
+        RETURN FALSE
+
+    METHOD displayRoute()
+        SET current = head
+        PRINT "Current Route: "
+        WHILE current != NULL
+            PRINT current.stopName + " -> "
+            current = current.next
+        ENDWHILE
+        PRINT "END"
+
+MAIN
+    CREATE route AS BusRoute
