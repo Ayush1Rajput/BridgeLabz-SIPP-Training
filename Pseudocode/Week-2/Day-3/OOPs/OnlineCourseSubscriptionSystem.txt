@@ -1,0 +1,44 @@
+
+// Pseudocode: Online Course Subscription System
+
+class Course {
+    private String title;
+    private String duration;
+    private double price;
+
+    // constructor, getters, setters
+}
+
+class Student {
+    private String name;
+    private String email;
+    private List<Course> enrolledCourses;
+
+    method enrollCourse(Course c):
+        if course not already in enrolledCourses:
+            add to enrolledCourses
+        else:
+            print "Already enrolled in this course"
+
+    method viewEnrolledCourses():
+        for each course in enrolledCourses:
+            print course details
+}
+
+main():
+    // Step 1: Add courses
+    Course java = new Course("Java Programming Basics", "6 weeks", 4999);
+    Course ds = new Course("Data Structures in Java", "8 weeks", 5999);
+    Course spring = new Course("Spring Boot for Web Development", "10 weeks", 6999);
+
+    // Step 2: Student Amit
+    Student amit = new Student("Amit", "amit@email.com");
+    amit.enrollCourse(java);
+    amit.enrollCourse(ds);
+    amit.viewEnrolledCourses();
+
+    // Step 3: Student Priya
+    Student priya = new Student("Priya", "priya@email.com");
+    priya.enrollCourse(spring);
+    priya.enrollCourse(java);
+    priya.viewEnrolledCourses();

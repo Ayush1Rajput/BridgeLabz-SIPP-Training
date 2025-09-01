@@ -1,0 +1,36 @@
+
+// Pseudocode: Student Ranking using Merge Sort
+
+class Student {
+    String name;
+    int marks;
+}
+
+function mergeSort(list):
+    if list.size <= 1: return list
+
+    mid = list.size / 2
+    left = mergeSort(list[0..mid])
+    right = mergeSort(list[mid+1..end])
+    return merge(left, right)
+
+function merge(left, right):
+    result = []
+    while left and right not empty:
+        if left[0].marks > right[0].marks:
+            add left[0] to result
+        else if left[0].marks == right[0].marks:
+            if left[0].name < right[0].name:
+                add left[0]
+            else:
+                add right[0]
+        else:
+            add right[0]
+
+    add remaining elements
+    return result
+
+main():
+    students = [("Amit",92),("Bhavna",92),("Kiran",85),("Dinesh",78),("Charu",92)]
+    sorted = mergeSort(students)
+    print sorted

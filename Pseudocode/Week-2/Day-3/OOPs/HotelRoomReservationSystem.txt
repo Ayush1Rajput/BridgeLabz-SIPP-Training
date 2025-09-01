@@ -1,0 +1,33 @@
+
+// Pseudocode: Hotel Room Reservation System
+
+class Room {
+    protected int roomNumber;
+    protected String customerName;
+    protected int daysStayed;
+
+    method calculateBill(): return 0
+}
+
+class DeluxeRoom extends Room {
+    private int rate = 3000;
+
+    override method calculateBill():
+        return daysStayed * rate
+}
+
+class SuiteRoom extends Room {
+    private int rate = 5000;
+
+    override method calculateBill():
+        return daysStayed * rate
+}
+
+main():
+    // Step 1: Customer Ravi books Deluxe Room for 3 nights
+    Room r1 = new DeluxeRoom(101, "Ravi", 3);
+    print r1.customerName + " - Bill: " + r1.calculateBill();
+
+    // Step 2: Customer Anita books Suite Room for 2 nights
+    Room r2 = new SuiteRoom(201, "Anita", 2);
+    print r2.customerName + " - Bill: " + r2.calculateBill();

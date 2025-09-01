@@ -1,0 +1,20 @@
+
+// Pseudocode: Hospital Department Mapping
+
+class Doctor {
+    String name;
+    String specialization;
+    int experienceYears;
+}
+
+main():
+    Map<String, List<Doctor>> hospital = new HashMap<>();
+
+    hospital.put("Cardiology", [new Doctor("Dr. Mehta","Cardiologist",15), new Doctor("Dr. Kapoor","Cardiologist",10)]);
+    hospital.put("Neurology", [new Doctor("Dr. Sharma","Neurologist",10), new Doctor("Dr. Das","Neurologist",8)]);
+    hospital.put("Pediatrics", [new Doctor("Dr. Ritu","Pediatrician",12), new Doctor("Dr. Anjali","Pediatrician",7)]);
+
+    // Query
+    List<Doctor> neuro = hospital.get("Neurology");
+    for each doc in neuro:
+        print doc.name + " - " + doc.specialization + " (" + doc.experienceYears + " years)";
