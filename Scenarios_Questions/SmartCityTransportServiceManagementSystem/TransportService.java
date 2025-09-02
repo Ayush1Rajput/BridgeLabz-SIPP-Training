@@ -7,6 +7,7 @@ public interface TransportService {
 	  String getRoute();
 	  
 	  default void printServiceDetails() {
+		  
 	        System.out.println(getServiceName() + " - Fare: " + getFare() + ", Departure: " + getDepartureTime());
 	  }
 }
