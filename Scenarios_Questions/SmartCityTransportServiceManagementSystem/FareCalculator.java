@@ -1,5 +1,6 @@
-package Scenarios_Questions.SmartCityTransportServiceManagementSystem;
+package com.workshops.smartCityTransportAndServiceManagement;
 
+@FunctionalInterface
 public interface FareCalculator {
-	double calculateFare(int distance, double rate);
+    double compute(double baseFare, boolean peak, double distance);
 }

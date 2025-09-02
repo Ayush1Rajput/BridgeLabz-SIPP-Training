@@ -1,5 +1,4 @@
-package Scenarios_Questions.SmartCityTransportServiceManagementSystem;
+package com.workshops.smartCityTransportAndServiceManagement;
 
-public interface EmergencyService {
-	
-}
+// Marker interface
+public interface EmergencyService { }

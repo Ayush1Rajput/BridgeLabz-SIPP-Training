@@ -1,13 +1,16 @@
-package Scenarios_Questions.SmartCityTransportServiceManagementSystem;
+package com.workshops.smartCityTransportAndServiceManagement;
 
 public interface TransportService {
-	  String getServiceName();
-	  double getFare();
-	  String getDepartureTime();
-	  String getRoute();
-	  
-	  default void printServiceDetails() {
-		  
-	        System.out.println(getServiceName() + " - Fare: " + getFare() + ", Departure: " + getDepartureTime());
-	  }
+    String getName();
+    String getRoute();
+    double calculateFare(double baseFare, boolean peak, double distance);
+    int getPassengerCapacity();
+
+    default String serviceInfo() {
+        return getName() + " on route " + getRoute();
+    }
+
+    static double baseFarePerKm(double distance) {
+        return distance * 5.0;
+    }
 }
